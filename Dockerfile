@@ -36,15 +36,14 @@ COPY --from=builder /build .
 # Cambia al usuario no root
 RUN useradd -ms /bin/bash appuser
 USER appuser
-
+CMD ["python", "manage.py", "migrate"]
 # Activa el entorno virtual
 ENV PATH="/venv/bin:$PATH"
 
 # Agrega más comandos de migración según tus bases de datos
-CMD ["python", "manage.py", "migrate"]
 # Elimina archivos temporales y cachés, pero no falla si no se encuentran
-RUN find /code -name "__pycache__" -exec rm -r {} + || true
-
+RUN find -name "__pycache__" -exec rm -r {} + || true
+CMD ["python", "manage.py", "migrate"]
 
 # Arranca la aplicación
 CMD ["python", "manage.py", "runserver", "0.0.0.0:4545"]

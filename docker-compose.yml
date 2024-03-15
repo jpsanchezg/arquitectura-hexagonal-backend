@@ -10,10 +10,12 @@ services:
       POSTGRES_DB: default_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: loljuan23
+      # Configuración para que escuche en la IP 127.0.0.1
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5431:5431"
+      - "5432:5432" # Cambia la dirección IP aquí
     volumes:
-      - ./data/postgres:/data/postgres
+      - ./data/postgres:/var/lib/postgresql/data/pgdata
     restart: unless-stopped
     networks:
       - default_network
@@ -24,7 +26,6 @@ services:
       retries: 3
   
 
-
 # Django App
   app:
     build:
@@ -32,7 +33,7 @@ services:
       dockerfile: Dockerfile
     container_name: django_backend
     ports:
-      - "4545:4545"
+      - "127.0.0.1:4545:4545"
     networks:
       - default_network
 

@@ -1,0 +1,30 @@
+# PostgreSQL
+*.pgsql
+*.sql
+*.dump
+*.log
+*.bak
+*.pg_data
+*.pgbackups
+*.pgpass
+*.pg_tblspc
+pg_clog/
+pg_dynshmem/
+pg_ident.conf
+pg_notify/
+pg_replslot/
+pg_serial/
+pg_snapshots/
+pg_stat/
+pg_stat_tmp/
+pg_subtrans/
+pg_tblspc/
+pg_twophase/
+pg_xact/
+PG_VERSION
+
+# Otros archivos de PostgreSQL
+/postmaster.pid
+/pgsql_tmp/
+/pg_xlog/
+.data/postgres
