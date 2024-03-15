@@ -1,6 +1,12 @@
+from typing import Dict, Any
+
 from django.apps import AppConfig
 
 
-class AppConfig(AppConfig):
-    default_auto_field = "django.db.models.BigAutoField"
-    name = "app"
+class MyAppConfig(AppConfig):
+    name = 'app'
+    container: Dict[str, Any]
+
+    def ready(self) -> None:
+        from app.dependencies_container import build_production_dependencies_container
+        self.container = build_production_dependencies_container()
