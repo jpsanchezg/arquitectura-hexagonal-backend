@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'app.aplicacion.adapter.api.http.exceptions_handler.exceptions_handler',  # noqa
+    "EXCEPTION_HANDLER": "app.aplicacion.adapter.api.http.exceptions_handler.exceptions_handler",  # noqa
 }
 # Application definition
 
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "app"
+    "app",
+    "reddit_clone",
 ]
 
 MIDDLEWARE = [
@@ -79,12 +80,12 @@ WSGI_APPLICATION = "backEnd.wsgi.application"
 
 DATABASES = {
     "default": {
-        'NAME': 'default_db',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'postgres',
-        'PASSWORD': 'loljuan23',
-        'HOST': 'default',
-        'PORT': '5432',
+        "NAME": "default_db",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "USER": "postgres",
+        "PASSWORD": "loljuan23",
+        "HOST": "default",
+        "PORT": "5432",
     }
 }
 
