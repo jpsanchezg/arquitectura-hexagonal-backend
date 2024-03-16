@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class ArticleEntity:
+class Article:
     title: str
     content: str
     upvotes: int
