@@ -13,7 +13,6 @@ from app.aplicacion.adapter.api.http.serializer.vote_for_article_command_deseria
 )
 from app.aplicacion.domain.model.vote_for_article_result import (
     AlreadyVotedResult,
-    InsufficientKarmaResult,
     SuccessfullyVotedResult,
     VoteForArticleResult
 )
@@ -55,12 +54,6 @@ class ArticleVoteView(APIView):
                 response_data = SuccessfullyVotedResultSerializer(
                     voting_result).data
                 response = Response(response_data, status=HTTPStatus.CREATED)
-            case InsufficientKarmaResult():
-                response = problem_response(
-                    title="Cannot vote for an article",
-                    detail=voting_result.to_message(),
-                    status=HTTPStatus.BAD_REQUEST
-                )
             case AlreadyVotedResult():
                 response = problem_response(
                     title="Cannot vote for an article",

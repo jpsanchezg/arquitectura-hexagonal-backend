@@ -10,8 +10,12 @@ app_config: MyAppConfig = cast(
     django_apps.get_containing_app_config('app')
 )
 article_vote_django_view = app_config.container['article_vote_django_view']
+crearArticulo = app_config.container['crearArticulo_view']
+
 
 urlpatterns = [
-    path('voto_articulo', article_vote_django_view),
-    path('crearArticulo', article_vote_django_view)
+    path('votoArticulo', article_vote_django_view),
+    path('crearArticulo', article_vote_django_view),
+    path('traerArticulo', article_vote_django_view),
+    path('crearUsuarios', article_vote_django_view),
 ]

@@ -1,6 +1,8 @@
 from typing import Any, Dict
 
 from app.aplicacion.adapter.api.http.voto_articulo_view import ArticleVoteView
+from app.aplicacion.adapter.api.http.articulo_view import ArticleView
+
 from app.aplicacion.adapter.spi.persistence.repository.voting_user_repository import (
     VotingUserRepository
 )
@@ -17,6 +19,9 @@ def build_production_dependencies_container() -> Dict[str, Any]:
 
     article_vote_django_view = ArticleVoteView.as_view(
         vote_for_article_use_case=article_rating_service
+    )
+    crearArticulo_view = ArticleView.as_view(
+        article_rating_service=article_rating_service
     )
 
     return {

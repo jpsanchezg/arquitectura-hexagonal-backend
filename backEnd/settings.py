@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "app"
+    "apa",
 ]
 
 MIDDLEWARE = [
@@ -107,7 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 

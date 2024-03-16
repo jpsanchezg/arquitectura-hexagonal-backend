@@ -12,13 +12,6 @@ class VoteForArticleResult:
         raise NotImplementedError()
 
 
-@dataclass
-class InsufficientKarmaResult(VoteForArticleResult):
-    user_id: UserId
-
-    def to_message(self) -> str:
-        return f"User {self.user_id} does not have enough karma" \
-            " to vote for an article"
 
 
 @dataclass
