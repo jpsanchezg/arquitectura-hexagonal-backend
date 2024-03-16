@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from uuid import UUID, uuid4
 
 
 @dataclass
@@ -7,3 +8,4 @@ class Article:
     content: str
     upvotes: int
     downvotes: int
+    id: UUID = field(default_factory=uuid4)
