@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 
-from reddit_clone.src.application.services import ArticleService
+from ....application.services import ArticleService
 
 
 class ArticleView(APIView):
