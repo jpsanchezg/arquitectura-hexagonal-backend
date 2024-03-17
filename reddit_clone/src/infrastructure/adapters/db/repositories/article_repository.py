@@ -1,8 +1,8 @@
 from uuid import UUID
 
-from reddit_clone.src.domain.models.article import Article
-from reddit_clone.src.domain.models.vote_type import VoteType
-
+from .....application.mappers import ArticleMapper
+from .....domain.models.article import Article
+from .....domain.models.vote_type import VoteType
 from .....domain.ports.output import ArticleOutputPort, VoteOutputPort
 from ..entities import ArticleEntity
 
@@ -12,14 +12,14 @@ class ArticleRepository(ArticleOutputPort, VoteOutputPort):
         super().__init__()
 
     def save_article(self, article: Article) -> Article:
-        ArticleEntity.objects.create(
+        article_entity = ArticleEntity.objects.create(
             article_id=article.id,
             title=article.title,
             content=article.content,
             upvotes=article.upvotes,
             downvotes=article.downvotes,
         )
-        return article
+        return ArticleMapper.entity_to_article(article_entity)
 
     def vote_article(self, article_id: UUID, vote_type: VoteType) -> None:
         article = ArticleEntity.objects.get(article_id=article_id)

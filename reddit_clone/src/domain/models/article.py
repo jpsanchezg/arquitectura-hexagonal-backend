@@ -6,6 +6,6 @@ from uuid import UUID, uuid4
 class Article:
     title: str
     content: str
-    upvotes: int
-    downvotes: int
+    upvotes: int = field(default=0)
+    downvotes: int = field(default=0)
     id: UUID = field(default_factory=uuid4)
