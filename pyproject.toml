@@ -2,7 +2,7 @@
 name = "taller"
 version = "0.1.0"
 description = ""
-authors = ["juan pablo sanchez gaitan <juansanchezg@javeriana.edu.co>"]
+authors = ["juan pablo sanchez gaitan <juansanchezg@javeriana.edu.co>", "santiago castro muñoz <castromsantiago@javeriana.edu.co>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

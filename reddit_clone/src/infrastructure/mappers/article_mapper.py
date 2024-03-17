@@ -1,7 +1,7 @@
 from typing import Any
 
 from ...domain.models import Article
-from ...infrastructure.adapters.db.entities import ArticleEntity
+from ...infrastructure.adapters.output.db.entities import ArticleEntity
 
 
 class ArticleMapper:
@@ -18,7 +18,7 @@ class ArticleMapper:
     @staticmethod
     def article_to_json(article: Article) -> Any:
         return {
-            "id": article.id,
+            "id": str(article.id),
             "title": article.title,
             "content": article.content,
             "upvotes": article.upvotes,

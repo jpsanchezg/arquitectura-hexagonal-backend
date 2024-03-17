@@ -1,9 +1,9 @@
 from uuid import UUID
 
-from .....domain.models.article import Article
-from .....domain.models.vote_type import VoteType
-from .....domain.ports.output import ArticleOutputPort, VoteOutputPort
-from ....mappers import ArticleMapper
+from ......domain.models.article import Article
+from ......domain.models.vote_type import VoteType
+from ......domain.ports.output import ArticleOutputPort, VoteOutputPort
+from .....mappers import ArticleMapper
 from ..entities import ArticleEntity
 
 

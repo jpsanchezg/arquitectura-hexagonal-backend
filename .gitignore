@@ -34,6 +34,9 @@ PG_VERSION
 data/postgres/
 ./data/postgres:/var/lib/postgresql/data/pgdata
 
+# Almacenamiento en archivos
+data/files
+
 
 # Archivos de migraciones de Django
 **/migrations/*.py

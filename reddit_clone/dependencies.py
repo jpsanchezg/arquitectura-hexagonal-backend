@@ -4,14 +4,16 @@ from django.http import HttpResponse
 
 from .src.application.services import ArticleService
 from .src.application.usecases import PublishArticleUseCase, VoteUsecase
-from .src.infrastructure.adapters.api.views import ArticleView, VoteView
-from .src.infrastructure.adapters.db.repositories import ArticleRepository
+from .src.infrastructure.adapters.input.api.views import ArticleView, VoteView
+from .src.infrastructure.adapters.output.general_ouput_adapter import (
+    GeneralOutputAdapter,
+)
 
 
 def init_dependencies() -> dict[str, Callable[..., HttpResponse]]:
-    article_repository = ArticleRepository()
-    publish_article_use_case = PublishArticleUseCase(article_repository)
-    vote_usecase = VoteUsecase(article_repository)
+    output_adapter = GeneralOutputAdapter()
+    publish_article_use_case = PublishArticleUseCase(output_adapter)
+    vote_usecase = VoteUsecase(output_adapter)
     article_service = ArticleService(publish_article_use_case, vote_usecase)
     article_view = ArticleView.as_view(article_service=article_service)
     vote_view = VoteView.as_view(article_service=article_service)
