@@ -19,6 +19,7 @@ MINIMUM_KARMA_REQUIRED_FOR_VOTING = Karma(5)
 @dataclass
 class VotingUser:
     id: UserId
+    name: str
     karma: Karma
     votes_for_articles: list[ArticleVote] = field(default_factory=list)
 
