@@ -16,5 +16,5 @@ class ArticleService(VoteInputPort, PublishArticleInputPort):
     def vote(self, article_id: UUID, vote_type: VoteType) -> None:
         self.vote_input_port.vote(article_id, vote_type)
 
-    def publish_article(self, article: Article) -> None:
-        self.publish_article_input_port.publish_article(article)
+    def publish_article(self, article: Article) -> Article:
+        return self.publish_article_input_port.publish_article(article)

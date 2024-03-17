@@ -5,7 +5,10 @@ from django.db import models
 
 class ArticleEntity(models.Model):
     article_id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    texto = models.CharField(max_length=1000)
+    title = models.CharField(max_length=100)
+    content = models.CharField(max_length=1000)
+    upvotes = models.IntegerField()
+    downvotes = models.IntegerField()
 
     class Meta:
         # in a real application this could be a view or a table intended for reads only
