@@ -2,8 +2,8 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .....application.mappers import ArticleMapper
 from .....application.services import ArticleService
+from ....mappers import ArticleMapper, VoteMapper
 
 
 class ArticleView(APIView):
@@ -22,4 +22,7 @@ class ArticleView(APIView):
         return Response({"article": ArticleMapper.article_to_json(article)})
 
     def put(self, request: Request) -> Response:
-        return Response()
+        vote_dto = VoteMapper.json_to_dto(request.data)
+        article = self.article_service.vote(vote_dto.article_id, vote_dto.vote_type)
+
+        return Response({"article": ArticleMapper.article_to_json(article)})
