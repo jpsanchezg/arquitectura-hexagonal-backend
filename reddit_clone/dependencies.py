@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from .src.application.services import ArticleService
 from .src.application.usecases import PublishArticleUseCase, VoteUsecase
-from .src.infrastructure.adapters.api.views import ArticleView
+from .src.infrastructure.adapters.api.views import ArticleView, VoteView
 from .src.infrastructure.adapters.db.repositories import ArticleRepository
 
 
@@ -14,5 +14,9 @@ def init_dependencies() -> dict[str, Callable[..., HttpResponse]]:
     vote_usecase = VoteUsecase(article_repository)
     article_service = ArticleService(publish_article_use_case, vote_usecase)
     article_view = ArticleView.as_view(article_service=article_service)
+    vote_view = VoteView.as_view(article_service=article_service)
 
-    return {ArticleView.__name__: article_view}
+    return {
+        ArticleView.__name__: article_view,
+        VoteView.__name__: vote_view,
+    }
