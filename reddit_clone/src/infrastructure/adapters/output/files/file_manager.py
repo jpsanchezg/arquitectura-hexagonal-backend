@@ -24,6 +24,20 @@ class FileManager(ArticleOutputPort, VoteOutputPort):
 
         return article
 
+    def get_all_articles(self) -> list[Article]:
+        data = self._read_file()
+
+        return [ArticleMapper.json_to_article(el) for el in data["articulos"]]
+
+    def get_article_by_id(self, article_id: UUID) -> Article:
+        data = self._read_file()
+
+        for el in data["articulos"]:
+            if el["id"] == str(article_id):
+                return ArticleMapper.json_to_article(el)
+
+        raise Exception("Article not found")
+
     def vote_article(self, article_id: UUID, vote_type: VoteType) -> Article:
         data = self._read_file()
 

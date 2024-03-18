@@ -30,3 +30,11 @@ class ArticleRepository(ArticleOutputPort, VoteOutputPort):
         article.save()
 
         return ArticleMapper.entity_to_article(article)
+
+    def get_all_articles(self) -> list[Article]:
+        return list(map(ArticleMapper.entity_to_article, ArticleEntity.objects.all()))
+
+    def get_article_by_id(self, article_id: UUID) -> Article:
+        return ArticleMapper.entity_to_article(
+            ArticleEntity.objects.get(article_id=article_id)
+        )

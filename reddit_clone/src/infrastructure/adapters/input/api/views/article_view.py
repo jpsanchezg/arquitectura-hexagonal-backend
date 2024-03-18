@@ -20,6 +20,8 @@ class ArticleView(APIView):
         )
 
         return Response({"article": ArticleMapper.article_to_json(article)})
+
     def get(self, request: Request) -> Response:
         articles = self.article_service.get_all_articles()
-        return Response({"articles": ArticleMapper.articles_to_json(articles)})
+
+        return Response({"articles": map(ArticleMapper.article_to_json, articles)})

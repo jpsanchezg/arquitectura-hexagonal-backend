@@ -19,3 +19,9 @@ class GeneralOutputAdapter(ArticleOutputPort, VoteOutputPort):
     def vote_article(self, article_id: UUID, vote_type: VoteType) -> Article:
         self.file_manager.vote_article(article_id, vote_type)
         return self.article_repository.vote_article(article_id, vote_type)
+
+    def get_all_articles(self) -> list[Article]:
+        return self.article_repository.get_all_articles()
+
+    def get_article_by_id(self, article_id: UUID) -> Article:
+        return self.article_repository.get_article_by_id(article_id)

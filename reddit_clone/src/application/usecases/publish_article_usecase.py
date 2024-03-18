@@ -1,8 +1,5 @@
-from reddit_clone.src.domain.ports.input.publish_article_input_port import (
-    PublishArticleInputPort,
-)
-
 from ...domain.models import Article
+from ...domain.ports.input import PublishArticleInputPort
 from ...domain.ports.output import ArticleOutputPort
 
 
