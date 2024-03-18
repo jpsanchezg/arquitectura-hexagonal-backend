@@ -46,3 +46,6 @@ __pycache__/
 
 # Archivos de logs de Django
 *.log
+
+Dockerfile
+docker-compose.yml
