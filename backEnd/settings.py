@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-r1%%k3b9x244+)@2fw_hqbd+k@=&tdojjx)3lq^zc*(u+ylc@^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', ]
 
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "reddit_clone.src.infrastructure.config.exceptions_handler.exceptions_handler",  # noqa
@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'corsheaders',
     "reddit_clone",
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
