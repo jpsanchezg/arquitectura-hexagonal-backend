@@ -18,3 +18,5 @@ class ArticleService(VoteInputPort, PublishArticleInputPort):
 
     def publish_article(self, article: Article) -> Article:
         return self.publish_article_input_port.publish_article(article)
+    def get_all_articles(self):
+        return self.publish_article_input_port.get_all_articles()
