@@ -79,6 +79,7 @@ WSGI_APPLICATION = "backEnd.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -134,5 +135,5 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CSRF_TRUSTED_ORIGINS = ['your_railway_app_url_here',
-                        'your_custom_domain_url_here']
+CSRF_TRUSTED_ORIGINS = ['https://arquitectura-hexagonal-backend-production.up.railway.app',
+                        ]
