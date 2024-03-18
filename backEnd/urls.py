@@ -19,7 +19,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("api/", include("app.urls")),
     path("reddit/", include("reddit_clone.urls")),
     path("admin/", admin.site.urls),
 ]

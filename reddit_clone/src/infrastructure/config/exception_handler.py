@@ -1,12 +1,16 @@
 import logging
 from http import HTTPStatus
 
+from rest_framework.response import Response
 from rest_framework.views import exception_handler
 
-from app.aplicacion.adapter.api.http.problem_response import problem_response
-from app.aplicacion.adapter.spi.persistence.exceptions.voting_user_not_found import (
-    VotingUserNotFound
-)
+
+def problem_response(title: str, detail: str, status: HTTPStatus) -> Response:
+    problem_data = {"title": title, "detail": detail, "status": status.value}
+    return Response(
+        problem_data, status=status.value, content_type="application/problem+json"
+    )
+
 
 logger = logging.getLogger(__name__)
 
@@ -22,13 +26,10 @@ def exceptions_handler(exc, context):
     if response is not None:
         return response
 
-    if isinstance(exc, VotingUserNotFound):
-        return problem_response("Error", str(exc), HTTPStatus.NOT_FOUND)
-
     logger.exception("Unhandled error: %s", exc, exc_info=True)
     return problem_response(
         "Unknown error",
         "Our deepest apologies, an unexpected error occurred "
         "and we are already working on it.",
-        HTTPStatus.INTERNAL_SERVER_ERROR
+        HTTPStatus.INTERNAL_SERVER_ERROR,
     )

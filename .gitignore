@@ -35,12 +35,12 @@ data/postgres/
 ./data/postgres:/var/lib/postgresql/data/pgdata
 
 # Almacenamiento en archivos
-data/files
+data/files/*.json
 
 
 # Archivos de migraciones de Django
 
-**/migrations/*.pyc
+**/migrations/
 
 # Archivos de caché de Django
 *.pyc

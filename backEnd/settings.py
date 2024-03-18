@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER": "app.aplicacion.adapter.api.http.exceptions_handler.exceptions_handler",  # noqa
+    "EXCEPTION_HANDLER": "reddit_clone.src.config.exceptions_handler",  # noqa
 }
 # Application definition
 
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "app",
     "reddit_clone",
 ]
 
