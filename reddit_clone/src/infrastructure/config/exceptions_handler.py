@@ -1,5 +1,6 @@
 import logging
 from http import HTTPStatus
+from typing import Any
 
 from rest_framework.response import Response
 from rest_framework.views import exception_handler
@@ -15,7 +16,7 @@ def problem_response(title: str, detail: str, status: HTTPStatus) -> Response:
 logger = logging.getLogger(__name__)
 
 
-def exceptions_handler(exc, context):
+def exceptions_handler(exc: Exception, context: Any):
     logger.error("Unexpected error occurred: %s", exc)
 
     # Call REST framework's default exception handler first,

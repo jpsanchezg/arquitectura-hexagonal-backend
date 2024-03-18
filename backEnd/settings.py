@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER": "reddit_clone.src.config.exceptions_handler",  # noqa
+    "EXCEPTION_HANDLER": "reddit_clone.src.infrastructure.config.exceptions_handler.exceptions_handler",  # noqa
 }
 # Application definition
 
