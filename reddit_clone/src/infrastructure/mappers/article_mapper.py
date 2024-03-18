@@ -1,5 +1,6 @@
 from typing import Any
 
+from ...domain.errors import FormatError
 from ...domain.models import Article
 from ...infrastructure.adapters.output.db.entities import ArticleEntity
 
@@ -13,7 +14,7 @@ class ArticleMapper:
                 content=json["content"],
             )
         except KeyError as e:
-            raise ValueError(f"Invalid article: {e}")
+            raise FormatError(str(e))
 
     @staticmethod
     def article_to_json(article: Article) -> Any:

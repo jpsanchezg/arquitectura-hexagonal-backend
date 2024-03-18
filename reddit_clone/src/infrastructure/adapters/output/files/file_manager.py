@@ -3,6 +3,7 @@ import os
 from typing import Any
 from uuid import UUID
 
+from .....domain.errors import ArticleNotFoundError
 from .....domain.models.article import Article
 from .....domain.models.vote_type import VoteType
 from .....domain.ports.output import ArticleOutputPort, VoteOutputPort
@@ -36,7 +37,7 @@ class FileManager(ArticleOutputPort, VoteOutputPort):
             if el["id"] == str(article_id):
                 return ArticleMapper.json_to_article(el)
 
-        raise Exception("Article not found")
+        raise ArticleNotFoundError(article_id)
 
     def vote_article(self, article_id: UUID, vote_type: VoteType) -> Article:
         data = self._read_file()
@@ -52,7 +53,7 @@ class FileManager(ArticleOutputPort, VoteOutputPort):
                 article = ArticleMapper.json_to_article(el)
 
         if article is None:
-            raise Exception("Article not found")
+            raise ArticleNotFoundError(article_id)
 
         self._write_file(data)
 

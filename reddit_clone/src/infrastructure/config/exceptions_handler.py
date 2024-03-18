@@ -5,6 +5,8 @@ from typing import Any
 from rest_framework.response import Response
 from rest_framework.views import exception_handler
 
+from ...domain.errors import ArticleNotFoundError, FormatError
+
 
 def problem_response(title: str, detail: str, status: HTTPStatus) -> Response:
     problem_data = {"title": title, "detail": detail, "status": status.value}
@@ -26,6 +28,20 @@ def exceptions_handler(exc: Exception, context: Any):
     response = exception_handler(exc, context)
     if response is not None:
         return response
+
+    if isinstance(exc, ArticleNotFoundError):
+        return problem_response(
+            "Article not found",
+            f"Article with id {exc.article_id} does not exist",
+            HTTPStatus.NOT_FOUND,
+        )
+
+    if isinstance(exc, FormatError):
+        return problem_response(
+            "Invalid format",
+            str(exc),
+            HTTPStatus.BAD_REQUEST,
+        )
 
     logger.exception("Unhandled error: %s", exc, exc_info=True)
     return problem_response(

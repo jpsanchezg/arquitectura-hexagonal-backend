@@ -1,5 +1,6 @@
 from uuid import UUID
 
+from ......domain.errors import ArticleNotFoundError
 from ......domain.models.article import Article
 from ......domain.models.vote_type import VoteType
 from ......domain.ports.output import ArticleOutputPort, VoteOutputPort
@@ -22,7 +23,11 @@ class ArticleRepository(ArticleOutputPort, VoteOutputPort):
         return ArticleMapper.entity_to_article(article_entity)
 
     def vote_article(self, article_id: UUID, vote_type: VoteType) -> Article:
-        article = ArticleEntity.objects.get(article_id=article_id)
+        try:
+            article = ArticleEntity.objects.get(article_id=article_id)
+        except ArticleEntity.DoesNotExist:
+            raise ArticleNotFoundError(article_id)
+
         if vote_type == VoteType.UPVOTE:
             article.upvotes += 1
         else:
@@ -35,6 +40,9 @@ class ArticleRepository(ArticleOutputPort, VoteOutputPort):
         return list(map(ArticleMapper.entity_to_article, ArticleEntity.objects.all()))
 
     def get_article_by_id(self, article_id: UUID) -> Article:
-        return ArticleMapper.entity_to_article(
-            ArticleEntity.objects.get(article_id=article_id)
-        )
+        try:
+            article = ArticleEntity.objects.get(article_id=article_id)
+        except ArticleEntity.DoesNotExist:
+            raise ArticleNotFoundError(article_id)
+
+        return ArticleMapper.entity_to_article(article)
